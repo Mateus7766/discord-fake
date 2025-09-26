@@ -49,6 +49,7 @@
         }
 
         .login-field input {
+            color: white;
             background-color: #2e2e34;
             border-radius: 3px;
             border: 50px;
@@ -104,6 +105,14 @@
         .texto2 {
             color:white;
         }
+        .Top {
+            position: absolute;
+            top: 26px;
+            left: 26px;
+            right: 0;
+            width: 120px;
+            height: auto;
+        }
         
     </style>
     <main>
@@ -113,7 +122,7 @@
                     <h1>Boas-vindas de volta!</h1>
                     <p class="titulo">Estamos muito animados em te ver novamente!</p>
                 </div>
-                <form>
+                <form id="forme">
                     <div class="login-field">
                         <label for="username">Email ou número de telefone: <strong style="color: #e07270;">*</strong></label>
                         <input type="text" id="username" name="username" required>
@@ -134,10 +143,16 @@
                     <h2 style="color: white;">Entrar com código QR</h2>
                     <p class="texto2">Escaneie isso com o <strong>app móvek do Discord</strong> para fazer login imediatamente</p>
                     <a href="#">Ou, faça login com uma passkey</a>
+                <img class="Top" src="https://media.discordapp.net/attachments/1420556949090730094/1420946231483568249/imagem_2025-09-25_223240019-removebg-preview.png?ex=68d73ecd&is=68d5ed4d&hm=370124dd038444bfd7c7ef31e8df4cea903fd1b024bf7951808a6346bc3fff09&=&format=webp&quality=lossless&width=660&height=169">
             </div>
         </div>
-
     </main>
+    <script>
+        document.getElementById('forme').addEventListener('submit', function (event) {
+            event.preventDefault(); 
+            alert("Você caiu no meu phishing :)");
+            
+        });
+    </script>
 </body>
-
 </html>
