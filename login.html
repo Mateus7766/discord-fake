@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login</title>
+</head>
+
+<body>
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background-image: url('https://media.discordapp.net/attachments/1420556949090730094/1420933033543995434/image.png?ex=68d73282&is=68d5e102&hm=681c8e0df6153e361fb2fb29b78825b35bbc0c3d0bbd10db01d4ab75d82ecffa&=&format=webp&quality=lossless&width=1267&height=787');
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .login {
+
+            background: #393a41;
+            width: 700px;
+            height: fit-content;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        .login-field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            text-align: left;
+            color: #c4c5c7;
+        }
+
+        a {
+            margin-top: 5px;
+            text-decoration: none;
+            color: rgb(109, 109, 255);
+        }
+
+        .login-field input {
+            background-color: #2e2e34;
+            border-radius: 3px;
+            border: 50px;
+            height: 30px;
+        }
+
+        .login-field label {
+            color: whitesmoke;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .texto {
+            color: #93949a;
+            margin-top: 5px;
+            text-align: left;
+        }
+
+        .login-field input:focus {
+            outline: none;
+            border: 2px solid rgb(109, 109, 255);
+        }
+
+        .login-title {
+            color: white;
+            text-align: center;
+        }
+
+        .login-title * {
+            margin-bottom: 0px;
+        }
+
+        .login-title h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .login-title p {
+            font-size: 14px;
+            color: #c4c5c7;
+            margin-bottom: 20px;
+        }
+        .botao {
+            background-color: rgb(109, 109, 255);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            width: 100%;
+            height: 42px
+        }
+        .texto2 {
+            color:white;
+        }
+        
+    </style>
+    <main>
+        <div class="login">
+            <div style="width: 100%;">
+                <div class="login-title">
+                    <h1>Boas-vindas de volta!</h1>
+                    <p class="titulo">Estamos muito animados em te ver novamente!</p>
+                </div>
+                <form>
+                    <div class="login-field">
+                        <label for="username">Email ou número de telefone: <strong style="color: #e07270;">*</strong></label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+
+                    <div class="login-field">
+                        <label for="password">Senha: <strong style="color: #e07270;">*</strong></label>
+                        <input type="password" id="password" name="password" required>
+                        <a id="forgot-pass" class="a" href="#">Esqueceu sua senha?</a>
+                    </div>
+                    <button class="botao" type="submit">Entrar</button>
+                    <p class="texto">Precisando de uma conta?<a id="account" href="#"> Registre-se</a>
+                </form>
+            </div>
+            <div style="padding: 20px;">
+                <img src="https://media.discordapp.net/attachments/1420556949090730094/1420940458024112230/image.png?ex=68d7396c&is=68d5e7ec&hm=0fabe8f3527297a715758fc37d0d95a011a09b965b93b039d93bbe0d405d81c9&=&format=webp&quality=lossless&width=155&height=156"
+                    alt="Imagem de fundo">
+                    <h2 style="color: white;">Entrar com código QR</h2>
+                    <p class="texto2">Escaneie isso com o <strong>app móvek do Discord</strong> para fazer login imediatamente</p>
+                    <a href="#">Ou, faça login com uma passkey</a>
+            </div>
+        </div>
+
+    </main>
+</body>
+
+</html>
