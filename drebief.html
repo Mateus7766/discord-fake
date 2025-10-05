@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing: Guia Completo de Proteção</title>
+    <!-- SweetAlert2 CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.7;
+        background: url('https://media.discordapp.net/attachments/1420556949090730094/1424531183995457628/vecteezy_Lavender-Lilac-Background-2_ir1020__generated-e1655987350100.png?ex=68e4498c&is=68e2f80c&hm=7286c5c2934d70a8336e1f31ca8a83d3ae04b019a13665b8d4732fdf519a3ed9&=&format=webp&quality=lossless&width=975&height=624');
+        background-repeat: no-repeat;
+        background-size:cover;
+        min-height: 100vh;
+        color: #2d3748;
+        overflow-x: hidden;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        flex-direction: column;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    .container > div {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-align: center;
+        margin-bottom: 30px;
+        letter-spacing: -0.02em;
+    }
+
+    p {
+        margin-bottom: 24px;
+        text-align: justify;
+        font-size: 1.1rem;
+        color: #4a5568;
+        line-height: 1.8;
+    }
+
+    .texto ul {
+        text-align: left;
+        margin: 24px 0;
+        padding-left: 0;
+    }
+
+    .texto li {
+        margin-bottom: 12px;
+        font-size: 1.05rem;
+        color: #4a5568;
+        padding-left: 20px;
+        position: relative;
+    }
+
+    .texto li::before {
+        content: "▶";
+        position: absolute;
+        left: 0;
+        color: #dc2626;
+        font-weight: bold;
+    }
+
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+        margin: 30px 0;
+        border-radius: 16px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    img:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    h2 {
+        font-size: 2.2rem;
+        font-weight: 600;
+        margin-top: 50px;
+        margin-bottom: 25px;
+        color: #2d3748;
+        position: relative;
+        padding-bottom: 15px;
+        letter-spacing: -0.01em;
+    }
+
+    h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        border-radius: 2px;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        color: #2d3748;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .warning-box {
+        background: whitesmoke;
+        border: none;
+        border-radius: 16px;
+        padding: 24px;
+        margin: 30px 0;
+        box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.2);
+        border-left: 4px solid #f59e0b;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .warning-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #f59e0b, #fbbf24);
+    }
+
+    .info-box {
+        background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        border: none;
+        border-radius: 16px;
+        padding: 24px;
+        margin: 30px 0;
+        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2);
+        border-left: 4px solid #3b82f6;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .info-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    }
+
+    .danger-box {
+        background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        border: none;
+        border-radius: 16px;
+        padding: 24px;
+        margin: 30px 0;
+        box-shadow: 0 10px 25px -5px rgba(239, 68, 68, 0.2);
+        border-left: 4px solid #ef4444;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .danger-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #ef4444, #f87171);
+    }
+
+    .steps {
+        counter-reset: step-counter;
+        padding-left: 0;
+    }
+
+    .steps li {
+        counter-increment: step-counter;
+        margin-bottom: 18px;
+        position: relative;
+        padding-left: 45px;
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+
+    .steps li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 0;
+        top: 2px;
+        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        color: white;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    }
+
+    .highlight {
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        padding: 4px 10px;
+        border-radius: 8px;
+        font-weight: 600;
+        color: #92400e;
+        box-shadow: 0 2px 4px rgba(245, 158, 11, 0.1);
+    }
+
+    details {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 16px;
+        margin: 25px 0;
+        padding: 0;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    details:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+    }
+
+    summary {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        padding: 20px 24px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1.1rem;
+        border-radius: 16px;
+        transition: all 0.3s ease;
+        color: #2d3748;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    summary:hover {
+        background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+        transform: translateX(4px);
+    }
+
+    details[open] summary {
+        border-radius: 16px 16px 0 0;
+        margin-bottom: 0;
+        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        color: white;
+    }
+
+    details[open] summary:hover {
+        background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
+        transform: none;
+    }
+
+    details p, details ul {
+        padding: 24px;
+        margin: 0;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    details ul li {
+        margin-bottom: 12px;
+        font-size: 1.05rem;
+        color: #4a5568;
+        position: relative;
+        padding-left: 24px;
+    }
+
+    details ul li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #dc2626;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    /* Animações suaves */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .container > div {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
+    }
+
+    /* Seleção de texto personalizada */
+    ::selection {
+        background: rgba(220, 38, 38, 0.3);
+        color: #2d3748;
+    }
+
+    /* Media queries para responsividade */
+    @media (max-width: 768px) {
+        body {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        }
+        
+        .container {
+            padding: 20px 15px;
+        }
+        
+        .container > div {
+            padding: 24px;
+            border-radius: 16px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 35px;
+        }
+        
+        p {
+            font-size: 1rem;
+        }
+
+        .steps li {
+            padding-left: 40px;
+        }
+
+        .steps li::before {
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+        }
+
+        summary {
+            padding: 16px 20px;
+            font-size: 1rem;
+        }
+
+        details p, details ul {
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            padding: 15px 10px;
+        }
+
+        .container > div {
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+        }
+
+        p {
+            font-size: 0.95rem;
+        }
+        
+        .texto ul {
+            padding-left: 0;
+        }
+
+        .steps li {
+            padding-left: 35px;
+        }
+
+        .warning-box, .info-box, .danger-box {
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        summary {
+            padding: 14px 16px;
+            font-size: 0.95rem;
+        }
+
+        details p, details ul {
+            padding: 16px;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div>
+            <h1>Phishing: Guia Completo de Proteção</h1>
+            
+            <div class="danger-box">
+                <h3>⚠️ Alerta Importante</h3>
+                <p>O phishing é uma das principais ameaças cibernéticas da atualidade. Aprenda a se proteger!</p>
+            </div>
+
+            <h2>O que é Phishing?</h2>
+            <p>O <span class="highlight">phishing</span> é uma técnica maliciosa utilizada por golpistas para roubar informações pessoais e confidenciais, como senhas, números de cartão de crédito, dados bancários e outras informações sensíveis. Os criminosos se fazem passar por empresas ou instituições confiáveis para enganar as vítimas.</p>
+            
+            <center><iframe width="560" height="315" src="https://www.youtube.com/embed/gSQgbCo6PAg?si=747FYLbho9T8Nc68" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
+
+            <h2>Como Funciona o Phishing?</h2>
+            <p>Os golpistas criam comunicações falsas (e-mails, SMS, sites) que parecem legítimas, imitando empresas conhecidas como bancos, redes sociais, serviços de streaming ou lojas online. O objetivo é fazer com que a vítima clique em links maliciosos ou forneça informações confidenciais.</p>
+
+            <div class="info-box">
+                <h3>💡 Dados Estatísticos</h3>
+                <p>Segundo pesquisas recentes, mais de 90% dos ataques cibernéticos começam com um e-mail de phishing. No Brasil, os golpes mais comuns envolvem bancos e fintechs.</p>
+            </div>
+
+            <h2>Tipos Mais Comuns de Phishing</h2>
+            <div class="texto">
+                <ul>
+                    <li><strong>E-mail Phishing:</strong> Mensagens falsas enviadas por e-mail</li>
+                    <li><strong>SMS Phishing (Smishing):</strong> Golpes através de mensagens de texto</li>
+                    <li><strong>Phishing por Voz (Vishing):</strong> Ligações telefônicas fraudulentas</li>
+                    <li><strong>Phishing em Redes Sociais:</strong> Perfis e mensagens falsas nas redes</li>
+                    <li><strong>Phishing de Clone:</strong> Cópias de e-mails legítimos com links maliciosos</li>
+                </ul>
+            </div>
+
+            <img src="imagens/ataque.png" alt="Tipos de ataques de phishing">
+
+            <h2>Como Identificar um Ataque de Phishing</h2>
+            
+            <details>
+                <summary>🔍 Sinais de Alerta em E-mails</summary>
+                <ul>
+                    <li>Remetente com domínio suspeito ou incorreto</li>
+                    <li>Erros de português ou gramática</li>
+                    <li>Urgência excessiva ("Sua conta será bloqueada em 24h")</li>
+                    <li>Solicitação de informações confidenciais</li>
+                    <li>Links suspeitos (passe o mouse sobre o link sem clicar)</li>
+                    <li>Anexos inesperados</li>
+                </ul>
+            </details>
+
+            <details>
+                <summary>🌐 Sinais em Sites Falsos</summary>
+                <ul>
+                    <li>URL diferente do site oficial</li>
+                    <li>Ausência do cadeado de segurança (HTTPS)</li>
+                    <li>Design mal feito ou diferente do original</li>
+                    <li>Formulários solicitando dados desnecessários</li>
+                    <li>Pop-ups excessivos</li>
+                </ul>
+            </details>
+
+            <h2>Como Se Proteger Contra Phishing</h2>
+
+            <div class="warning-box">
+                <h3>🛡️ Dicas Essenciais de Proteção</h3>
+                <div class="texto">
+                    <ul class="steps">
+                        <li>Sempre verifique o remetente e o domínio do e-mail</li>
+                        <li>Nunca clique em links suspeitos - digite o site diretamente</li>
+                        <li>Use autenticação de dois fatores (2FA) sempre que possível</li>
+                        <li>Mantenha seu software e antivírus atualizados</li>
+                        <li>Desconfie de mensagens com urgência excessiva</li>
+                        <li>Verifique sempre a URL do site antes de inserir dados</li>
+                        <li>Não forneça informações pessoais por e-mail ou telefone</li>
+                        <li>Use senhas fortes e diferentes para cada conta</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>O Que Fazer Se Você Caiu em um Golpe</h2>
+            
+            <details>
+                <summary>🚨 Passos Imediatos</summary>
+                <div class="texto">
+                    <ul class="steps">
+                        <li>Mude imediatamente todas as senhas comprometidas</li>
+                        <li>Entre em contato com seu banco ou instituição financeira</li>
+                        <li>Monitore suas contas bancárias e cartões</li>
+                        <li>Ative alertas de transações</li>
+                        <li>Considere cancelar cartões comprometidos</li>
+                        <li>Faça um boletim de ocorrência</li>
+                        <li>Notifique a empresa que foi falsificada</li>
+                    </ul>
+                </div>
+            </details>
+
+            <h2>Como Denunciar Phishing</h2>
+            
+            <details>
+                <summary>📞 Canais de Denúncia</summary>
+                <p><strong>No Brasil, você pode denunciar através de:</strong></p>
+                <ul>
+                    <li><strong>CERT.br:</strong> Centro de Estudos, Resposta e Tratamento de Incidentes de Segurança</li>
+                    <li><strong>Polícia Civil:</strong> Delegacia de Crimes Cibernéticos</li>
+                    <li><strong>Procon:</strong> Para golpes envolvendo relações de consumo</li>
+                    <li><strong>Banco Central:</strong> Para golpes bancários</li>
+                    <li><strong>Empresas:</strong> Relate diretamente às empresas falsificadas</li>
+                </ul>
+            </details>
+
+            <h2>Ferramentas de Proteção</h2>
+            
+            <div class="info-box">
+                <h3>🔧 Ferramentas Recomendadas</h3>
+                <ul>
+                    <li><strong>Antivírus:</strong> Windows Defender, Kaspersky, Norton</li>
+                    <li><strong>Extensões de Navegador:</strong> uBlock Origin, Malwarebytes</li>
+                    <li><strong>Gerenciadores de Senha:</strong> Bitwarden, LastPass, 1Password</li>
+                    <li><strong>Autenticação 2FA:</strong> Google Authenticator, Authy</li>
+                    <li><strong>E-mail Seguro:</strong> ProtonMail, Tutanota</li>
+                </ul>
+            </div>
+
+            <h2>Educação e Conscientização</h2>
+            <p>A melhor defesa contra o phishing é a <span class="highlight">educação</span>. Compartilhe este conhecimento com familiares e colegas. Lembre-se: empresas legítimas nunca solicitam informações confidenciais por e-mail ou telefone.</p>
+
+            <div class="warning-box">
+                <h3>🎯 Lembre-se Sempre</h3>
+                <p>Quando em dúvida, <strong>não clique</strong>. É melhor ser cauteloso do que se tornar vítima de um golpe. Sempre confirme a legitimidade das comunicações através de canais oficiais.</p>
+            </div>
+
+            <h2>Conclusão</h2>
+            <p>O phishing é uma ameaça real e em constante evolução. Mantendo-se informado, utilizando as ferramentas certas e seguindo as práticas de segurança, você pode se proteger efetivamente contra esses ataques. A segurança digital é responsabilidade de todos nós.</p>
+        </div>
+    </div>
+
+    <script>
+        // SweetAlert de boas-vindas ao carregar a página
+        window.addEventListener('load', function() {
+            Swal.fire({
+                title: '🛡️ Bem-vindo ao Guia de Proteção!',
+                html: `
+                    <div style="text-align: left; font-size: 1rem; line-height: 1.6;">
+                        <p><strong>🔒 Você está prestes a aprender sobre:</strong></p>
+                        <ul style="text-align: left; margin: 15px 0; padding-left: 20px;">
+                            <li>Como identificar ataques de phishing</li>
+                            <li>Técnicas de proteção essenciais</li>
+                            <li>O que fazer se cair em um golpe</li>
+                            <li>Ferramentas de segurança recomendadas</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>⚠️ Lembre-se:</strong> Sua segurança digital é nossa prioridade!</p>
+                    </div>
+                `,
+                icon: 'info',
+                iconColor: '#dc2626',
+                background: 'rgba(255, 255, 255, 0.95)',
+                backdrop: 'rgba(220, 38, 38, 0.2)',
+                confirmButtonText: '🚀 Começar a Aprender',
+                confirmButtonColor: '#dc2626',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInUp animate__faster'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutDown animate__faster'
+                },
+                customClass: {
+                    popup: 'sweet-alert-custom',
+                    title: 'sweet-alert-title',
+                    htmlContainer: 'sweet-alert-content'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Pequena animação de scroll suave para o conteúdo
+                    document.querySelector('h2').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* Estilos personalizados para o SweetAlert */
+        .sweet-alert-custom {
+            border-radius: 20px !important;
+            box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.3) !important;
+            border: 1px solid rgba(220, 38, 38, 0.1) !important;
+        }
+        
+        .sweet-alert-title {
+            color: #dc2626 !important;
+            font-weight: 700 !important;
+            font-size: 1.5rem !important;
+        }
+        
+        .sweet-alert-content {
+            color: #4a5568 !important;
+        }
+        
+        .sweet-alert-content ul {
+            color: #4a5568 !important;
+        }
+        
+        .sweet-alert-content li {
+            margin-bottom: 8px !important;
+        }
+
+        /* Animações do SweetAlert */
+        @keyframes animate__fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes animate__fadeOutDown {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+        }
+
+        .animate__animated {
+            animation-duration: 0.5s;
+            animation-fill-mode: both;
+        }
+
+        .animate__faster {
+            animation-duration: 0.3s;
+        }
+
+        .animate__fadeInUp {
+            animation-name: animate__fadeInUp;
+        }
+
+        .animate__fadeOutDown {
+            animation-name: animate__fadeOutDown;
+        }
+    </style>
+</body>
+</html>
