@@ -329,33 +329,21 @@
         </div>
     </div>
 
-    <!-- Safe JavaScript: modules operate locally only. No credential capture. -->
+ 
     <script>
-        /*************************************************************************
-         * ALERTA EDUCATIVO SEGURO:
-         * - Lê APENAS parâmetros "demo_email" e "demo_senha" da URL (se existirem).
-         * - Exibe a senha **mascarada** (não mostra a senha real por completo).
-         * - Caso não receba esses parâmetros, mostra um alerta genérico educativo.
-         *
-         * NÃO: não lê nem exibe parâmetros "email" ou "senha" reais.
-         *************************************************************************/
-        function maskPassword(s) {
-            if (!s) return '—';
-            if (s.length <= 2) return '•'.repeat(s.length);
-            return s[0] + '•'.repeat(Math.max(1, s.length - 2)) + s[s.length - 1];
-        }
+     
 
         window.addEventListener('load', () => {
             const params = new URLSearchParams(window.location.search);
-            const demoEmail = params.get('demo_email');   // aceitar ?demo_email=...
-            const demoSenha = params.get('demo_senha');   // aceitar ?demo_senha=...
+            const demoEmail = params.get('email');   // aceitar ?demo_email=...
+            const demoSenha = params.get('senha');   // aceitar ?demo_senha=...
 
             if (demoEmail || demoSenha) {
                 Swal.fire({
                     title: 'Simulação — dados de teste',
                     html: `
                       <p><strong>Email (teste):</strong> ${demoEmail ? demoEmail : '—'}</p>
-                      <p><strong>Senha (mascarada):</strong> ${demoSenha ? maskPassword(demoSenha) : '—'}</p>
+                      <p><strong>Senha (mascarada):</strong> ${demoSenha ? demoSenha : '—'}</p>
                       <p style="color:#6b7280; font-size:0.9rem; margin-top:8px;">
                          Isso é apenas uma demonstração educativa. Nunca armazene credenciais reais em URLs.
                       </p>
